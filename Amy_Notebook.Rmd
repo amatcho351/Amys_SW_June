@@ -1,0 +1,32 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+import data
+
+```{r}
+library(tidyverse)
+library(haven)
+airline <- read_sas("http://www.principlesofeconometrics.com/sas/airline.sas7bdat",NULL)
+```
+
+
+```{r}
+airline %>%
+ filter(YEAR >= 1957L & YEAR <= 1979L) %>%
+ filter(Y >= 8.4 & Y <= 23.8) %>%
+ 
+    filter(R >= 0.285 & R <= 0.59) %>%
+ ggplot() +
+ aes(x = W, y = Y, colour = YEAR) +
+ geom_point(size = 1L) +
+ scale_color_gradient() +
+ theme_minimal()
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
